@@ -12,6 +12,18 @@ class UserController {
 
     res.status(StatusCodes.CREATED).json(userCreated);
   };
+
+  public login = async (req: Request, res: Response) => {
+    const login = req.body;
+
+    const loginCompleted = await this.userService.login(login);
+
+    if (!loginCompleted) {
+      return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Username or password invalid' });
+    }
+
+    res.status(StatusCodes.OK).json(loginCompleted);
+  };
 }
 
 export default UserController;
