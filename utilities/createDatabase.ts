@@ -14,7 +14,7 @@ export default async function createDatabase(conn: Pool) {
       await conn.query(query);
     }
   } catch (error) {
-    console.log('Banco Falha em restaurar o Banco', error);
+    console.log('Falha em Criar o Banco', error);
   }
 }
 
@@ -22,7 +22,7 @@ if (require.main === module) {
 
   createDatabase(connection)
     .then(async () => {
-      console.log('Banco Restaurado com sucesso');
+      console.log('Banco Criado com sucesso');
       await connection.end()
       process.exit(0);
     });
